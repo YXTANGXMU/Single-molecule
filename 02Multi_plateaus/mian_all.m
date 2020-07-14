@@ -17,25 +17,26 @@ for i=1:size(datacut,2)
    end
 end
  k=1;
+ clear datacut
 for i=1:length(datacut1)
     z=min(find(datacut1{i}(10:end,2)<-2.0));
     if isempty(z)==0
         datacut2{k}=datacut1{i};
         len_1(k)=min(find(datacut1{i}(10:end,2)<-2.0));
-        datacut{k}=datacut1{i}(len_1(k)+10:max(find(datacut1{i}(:,2)>-6.0)),:);
+        datacut{k}=datacut1{i}(len_1(k)+10:max(find(datacut1{i}(:,2)>-4.5)),:);
         lengh(k)=length(datacut{k});
         k=k+1;
     end
 end
-datacut=datacut2;
+datacut1=datacut2;
 
 
 
 %fragment parameters
 %length 
-dis=0.1;
-k=10;
-len_o=points(dis,datacut2{k});
+dis=0.1; %nm
+k=5;
+len_o=points(dis,datacut{k});
 kk=350000;
 len=len_o;
 len2=len_o;  
@@ -108,5 +109,5 @@ end
 %  Results
  label=unique(label);
   
- P=length(label)/length(datacut)
-
+ P=length(label)/length(datacut);
+ datacut_selct=datacut2(1,label,1);
